@@ -1,8 +1,7 @@
 import React, { useEffect, useState } from "react";
 import "./card.scss"
 import KeyboardArrowUpIcon from "@mui/icons-material/KeyboardArrowUp";
-import PersonOutlinedIcon from "@mui/icons-material/PersonOutlined";
-import { AcUnit, LocalDrink, QuestionAnswer, SevereCold, SupervisedUserCircleOutlined, Thermostat, TripOrigin } from "@mui/icons-material";
+import { AcUnit, LocalDrink, SevereCold, Thermostat } from "@mui/icons-material";
 import { Link } from "react-router-dom";
 
 const Card = ({type}) => {
