@@ -1,0 +1,39 @@
+*{
+    font-family: 'Nunito', sans-serif;
+    font-weight: 400;
+    margin: 0;
+}
+
+.imgLogin {
+    width: 50%;
+    height: 500px;
+    background: #0a538bcf;
+    opacity: .2;
+}
+
+.cardContainer {
+    display: flex;
+    padding: 20px 60px;
+    gap: 20px;
+    
+}
+
+.chart{
+    display: flex;
+    gap: 20px;
+    padding: 10px 60px;
+
+
+    .lefChat{
+        flex:1;
+        box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
+        height: 350px;
+    }
+
+    .RightChat{
+        flex:1;
+        box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
+        height: 350px;       
+    }
+}
+

@@ -50,6 +50,7 @@ export default function Login() {
                             backgroundSize: "cover",
                             backgroundPosition: "center",
                         }}
+                        className="imgLogin"
                     />
                     <Grid
                         item
