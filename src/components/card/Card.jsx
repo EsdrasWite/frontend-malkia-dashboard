@@ -17,7 +17,7 @@ const Card = ({type}) => {
       data = {
         title: "Humidite du sol",
         isMoney: false,
-        link: "See all users",
+        link: "Pourcentage",
         toLink: "users",
         amount: amount,
         icon: (
@@ -35,7 +35,7 @@ const Card = ({type}) => {
       data = {
         title: "Temperature ambiante",
         isMoney: false,
-        link: "View all trips",
+        link: "En degré celcius",
         toLink: "trips",
         amount: amount,
         icon: (
@@ -53,7 +53,7 @@ const Card = ({type}) => {
       data = {
         title: "Humidite ambiante",
         isMoney: false,
-        link: "View questions",
+        link: "Pourcentage",
         toLink: "questions",
         amount: 10,
         icon: (
@@ -68,8 +68,7 @@ const Card = ({type}) => {
       data = {
         title: "Niveau citerne d'eau",
         isMoney: false,
-        link: "See active users",
-        toLink: "",
+        link: "Pourcentage",
         amount: amount,
         icon: (
           <LocalDrink
@@ -94,7 +93,7 @@ const Card = ({type}) => {
         <span className="counter">
           {data.isMoney && "$"} {data.amount} 
         </span>
-        <Link to={data.toLink} style={{ textDecoration: 'none' }}>
+        <Link style={{ textDecoration: 'none' }}>
           <span className="link">{data.link}</span>
         </Link>
       </div>
