@@ -10,15 +10,16 @@ export default function Login() {
     const [credentials, setCredentials] = React.useState({
         username: '',
         password: '',
-
     })
 
     const handleChange = (event) => {
         setCredentials((prev) => ({ ...prev, [event.target.name]: event.target.value }))
     };
+
     const handleSelect = (event) => {
         setTypefleur(event.target.value)
     };
+    
     const handleSubmit = (event) => {
         event.preventDefault();
         console.log(credentials);

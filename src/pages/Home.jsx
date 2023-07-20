@@ -1,11 +1,12 @@
-import React from 'react'
+import * as React from 'react';
+import NavBar from '../components/navbar/Navbar';
 
-const Home = () => {
-  return (
-    <div>
-    <h1>Home page</h1>  
-    </div>
-  )
+function Home() {
+
+    return (
+        <React.Fragment>
+            <NavBar />
+        </React.Fragment>
+    );
 }
-
-export default Home
+export default Home;
