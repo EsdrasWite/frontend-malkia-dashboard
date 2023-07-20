@@ -32,7 +32,7 @@ const Card = ({type}) => {
       break;
     case "temperatureAmbiante":
       data = {
-        title: "Temperature ambiante",
+        title: "Température ambiante",
         isMoney: false,
         link: "En degré celcius",
         toLink: "trips",

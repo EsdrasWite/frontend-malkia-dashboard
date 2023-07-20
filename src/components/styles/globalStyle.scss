@@ -1,4 +1,4 @@
-*{
+* {
     font-family: 'Nunito', sans-serif;
     font-weight: 400;
     margin: 0;
@@ -15,25 +15,71 @@
     display: flex;
     padding: 20px 60px;
     gap: 20px;
-    
+
 }
 
-.chart{
+.chart {
     display: flex;
     gap: 20px;
     padding: 10px 60px;
 
 
-    .lefChat{
-        flex:1;
+    .lefChat {
+        flex: 1;
         box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
         height: 350px;
+
+        .legend {
+            display: flex;
+            flex-direction: row;
+            justify-content: right;
+            align-items: center;
+            gap:10px;
+            padding: 0px 40px;
+
+            .LegendDot{
+                height: 20px;
+                width: 20px;
+                border-radius: 50%;
+                background-color: #D7A0A0;
+            }
+
+            .legendLabel{
+                font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+                font-style: italic;
+                color: #9e4242;
+            }
+
+        }
     }
 
-    .RightChat{
-        flex:1;
+    .RightChat {
+        flex: 1;
         box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
-        height: 350px;       
+        height: 350px;
+
+        .legend {
+            display: flex;
+            flex-direction: row;
+            justify-content: right;
+            align-items: center;
+            gap:10px;
+            padding: 0px 40px;
+
+            .LegendDot{
+                height: 20px;
+                width: 20px;
+                border-radius: 50%;
+                background-color: #73b9b9;
+            }
+
+            .legendLabel{
+                font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+                font-style: italic;
+                color: #52dbbbc4;
+            }
+
+        }
+        
     }
 }
-
