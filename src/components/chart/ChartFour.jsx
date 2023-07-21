@@ -49,10 +49,10 @@ const data = [
 const Chart = ()=> {
 
     return (
-      <ResponsiveContainer width="99%" height="100%">
+      <ResponsiveContainer width="99%" height={300}>
         <AreaChart
           width={500}
-          height={400}
+          height={300}
           data={data}
           margin={{
             top: 10,
