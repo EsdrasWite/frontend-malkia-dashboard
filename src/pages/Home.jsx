@@ -48,6 +48,13 @@ function Home() {
                 </div>
             </div>
 
+            <div className="chart2">
+                <div className="box box1">box1</div>
+                <div className="box box2">box2</div>
+                <div className="box box3">bo3x</div>
+                <div className="box box4">box4</div>
+            </div>
+
         </React.Fragment>
     );
 }
