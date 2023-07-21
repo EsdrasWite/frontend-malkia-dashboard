@@ -29,8 +29,8 @@ const data = [
   {
     name: '4',
     uv: 18,
-    pv: 48,
-    amt: 21,
+    // pv: 48,
+    // amt: 21,
   },
   {
     name: '5',
