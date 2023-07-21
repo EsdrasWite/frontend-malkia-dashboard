@@ -21,33 +21,6 @@ function Home() {
                 <Card type="niveauEau" />
             </Box>
 
-            {/* <div className='chart'>
-                <div className="lefChat">
-                    <div className="legend">
-                        <span className="legendLabel">Humidité du sol</span>
-                        <span className="LegendDot"></span>
-                    </div>
-                    <ChartOne />
-                </div>
-                <div className="RightChat">
-                    <div className="legend">
-                        <span className="legendLabel">Humidité ambiante</span>
-                        <span className="LegendDot"></span>
-                    </div>
-                    <ChartTwo />
-
-                </div>
-            </div>
-            <div className='chart'>
-                <div className="lefChat">
-                    <ChartThree />
-                </div>
-                <div className="RightChat">
-                    <ChartFour />
-
-                </div>
-            </div> */}
-
             <div className="chart2">
 
                 <div className="box box1">
