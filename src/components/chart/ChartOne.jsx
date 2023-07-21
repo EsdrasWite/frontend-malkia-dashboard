@@ -62,7 +62,8 @@ const Chart = ()=> {
           }}
         >
           <CartesianGrid strokeDasharray="3 3" />
-          <XAxis dataKey="name" />
+
+                   <XAxis dataKey="name" />
           <YAxis />
           <Tooltip />
           <Area type="monotone" dataKey="uv" stackId="1" stroke="#CE1D1D" fill="#F5D2D2" />
