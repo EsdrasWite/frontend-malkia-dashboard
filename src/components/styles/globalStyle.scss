@@ -3,7 +3,9 @@
 * {
     font-family: 'Nunito', sans-serif;
     font-weight: 400;
-    margin: 0; 
+    margin: 0;
+    background: #1c1c3bc8;
+    color:#999
 }
 
 .imgLogin {
@@ -14,9 +16,15 @@
 }
 
 .cardContainer {
-    display: flex;
-    padding: 20px 60px;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    padding: 20px 20px;
     gap: 20px;
+
+    @include md {
+        grid-template-columns: 1fr 1fr;
+        padding: 20px 30px;
+    }
 
 }
 
@@ -27,11 +35,15 @@
     grid-template-columns: 1fr 1fr;
     grid-auto-rows: minmax(160px, auto);
 
-    @include md{
+    @include md {
         padding: 20px 30px;
         grid-template-columns: 1fr;
     }
-    
+
+    @include lg {
+        padding: 20px 10px;
+    }
+
     .box {
         padding: 10px;
         box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
@@ -40,6 +52,7 @@
     .box1 {
         grid-column: span 1;
         grid-row: span 2;
+
 
         .legend {
             display: flex;
@@ -70,6 +83,7 @@
         grid-column: span 1;
         grid-row: span 2;
 
+     
         .legend {
             display: flex;
             flex-direction: row;
@@ -98,6 +112,7 @@
         grid-column: span 1;
         grid-row: span 2;
 
+   
         .legend {
             display: flex;
             flex-direction: row;

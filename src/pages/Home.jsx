@@ -15,10 +15,22 @@ function Home() {
             <NavBar />
 
             <Box className='cardContainer' >
-                <Card type="humiditeSol" />
-                <Card type="humiditeAmbiante" />
-                <Card type="temperatureAmbiante" />
-                <Card type="niveauEau" />
+                <div className="box box1">
+                    <Card type="humiditeSol" />
+                </div>
+                <div className="box box1">
+                    <Card type="humiditeAmbiante" />
+
+                </div>
+                <div className="box box1">
+                    <Card type="temperatureAmbiante" />
+
+                </div>
+                <div className="box box1">
+                    <Card type="niveauEau" />
+
+                </div>
+
             </Box>
 
             <div className="chart2">
