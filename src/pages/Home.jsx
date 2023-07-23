@@ -7,6 +7,7 @@ import ChartOne from '../components/chart/ChartOne.jsx';
 import ChartTwo from '../components/chart/ChartTwo.jsx';
 import ChartThree from '../components/chart/ChartThree.jsx';
 import ChartFour from '../components/chart/ChartFour.jsx';
+import Footer from '../components/footer/Footer';
 
 function Home() {
 
@@ -67,7 +68,7 @@ function Home() {
                     <ChartFour />
                 </div>
             </div>
-
+            <Footer />
         </React.Fragment>
     );
 }
