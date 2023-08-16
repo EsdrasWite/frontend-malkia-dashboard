@@ -5,6 +5,7 @@ import DialogActions from '@mui/material/DialogActions';
 import DialogContent from '@mui/material/DialogContent';
 import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
+import { Typography } from '@mui/material';
 
 export default function AlertDialog({error,setError,errorMsg, setErrorMsg}) {
     const [open, setOpen] = React.useState(false);
@@ -20,7 +21,7 @@ export default function AlertDialog({error,setError,errorMsg, setErrorMsg}) {
     };
 
     return (
-        <div>
+        // <div>
           
             <Dialog
                 open={error}
@@ -28,21 +29,21 @@ export default function AlertDialog({error,setError,errorMsg, setErrorMsg}) {
                 aria-labelledby="alert-dialog-title"
                 aria-describedby="alert-dialog-description"
             >
-                <DialogTitle id="alert-dialog-title">
-                    {"Alerte"}
+                <DialogTitle id="alert-dialog-title" color='warning'>
+                    {"ALERTE"}
                 </DialogTitle>
                 <DialogContent>
                     <DialogContentText id="alert-dialog-description">
-                         <span style={{fontSize:'16px', color:'red'}}>{errorMsg}</span>
+                         <Typography color='warning'>{errorMsg}</Typography>
                     </DialogContentText>
                 </DialogContent>
                 <DialogActions>
                     {/* <Button onClick={handleClose}></Button> */}
-                    <Button onClick={handleClose} autoFocus>
+                    <Button onClick={handleClose} autoFocus color='warning' variant='outlined'>
                         Fermer
                     </Button>
                 </DialogActions>
             </Dialog>
-        </div>
+       // </div>
     );
 }

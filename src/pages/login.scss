@@ -1,0 +1,62 @@
+@import '../components/styles/responsive.scss';
+
+.container {
+    height: 100vh;
+
+    .body {
+        display: flex;
+        gap: 20px;
+        padding: 60px 60px;
+
+        .left {
+            flex: 3;
+            display: flex;
+            background-image: url('../components/assets/pot_de_fleur_con.png');
+            background-repeat: no-repeat;
+            background-size: contain;
+            background-position: center;
+            opacity: 0.7;
+
+            @include md {
+                background-size: cover;
+            }
+
+            @include sm {
+              display: none;
+            }
+      
+
+            title {
+                color: white;
+                font-weight: bold;
+                font-size: 40px;
+                // z-index: 100;
+
+            }
+        }
+
+        .rigth {
+            flex: 2;
+            flex-direction: column;
+            gap: 15px;
+            box-shadow: rgba(0, 0, 0, 0.36) 0px 3px 5px;
+            padding: 20px 60px;
+            justify-content: center;
+            align-items: center;
+
+            @include md {
+                padding: 20px 10px;
+                flex: 3;
+            }
+
+            .title {
+                font-size: 18px;
+                text-align: center;
+                padding: 20px;
+                color: #999;
+            }
+        }
+    }
+
+
+}
