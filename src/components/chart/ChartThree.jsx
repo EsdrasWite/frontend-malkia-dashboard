@@ -1,53 +1,71 @@
 import React from 'react';
 import { AreaChart, Area, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer } from 'recharts';
 
-const data = [
-  {
-    name: '',
-    // uv: 40,
-    // pv: 24,
-    amt: 24,
-  },
-  {
-    name: '1',
-    // uv: 30,
-    // pv: 13,
-    amt: 22,
-  },
-  {
-    name: '2',
-    // uv: 20,
-    // pv: 98,
-    amt: 22,
-  },
-  {
-    name: '3',
-    // uv: 27,
-    // pv: 39,
-    amt: 20,
-  },
-  {
-    name: '4',
-    // uv: 18,
-    // pv: 48,
-    amt: 21,
-  },
-  {
-    name: '5',
-    // uv: 23,
-    // pv: 38,
-    amt: 25,
-  },
-  {
-    name: '6',
-    // uv: 34,
-    // pv: 43,
-    amt: 21,
-  },
-];
 
-const Chart = ()=> {
-
+const Chart = ({dataTable})=> {
+  const data = [
+    {
+      name: '',
+      Température_ambiante: !!(dataTable[0].temperatureamb) ? (dataTable[0].temperatureamb)+(Math.random()*2) : 0,
+      // pv: 24,
+      // amt: 24,
+    },
+    {
+      name: '1',
+      Température_ambiante: !!(dataTable[1].temperatureamb) ? (dataTable[1].temperatureamb)+(Math.random()*2) : 0,
+      // pv: 13,
+      // amt: 22,
+    },
+    {
+      name: '2',
+      Température_ambiante: !!(dataTable[2].temperatureamb) ? (dataTable[2].temperatureamb)+(Math.random()*2) : 0,
+      // pv: 98,
+      // amt: 22,
+    },
+    {
+      name: '3',
+      Température_ambiante: !!(dataTable[3].temperatureamb) ? (dataTable[3].temperatureamb)+(Math.random()*2) : 0,
+      // pv: 39,
+      // amt: 20,
+    },
+    {
+      name: '4',
+      Température_ambiante: !!(dataTable[4].temperatureamb) ? (dataTable[4].temperatureamb)+(Math.random()*2) : 0,
+      // pv: 48,
+      // amt: 21,
+    },
+    {
+      name: '5',
+      Température_ambiante: !!(dataTable[5].temperatureamb) ? (dataTable[5].temperatureamb)+(Math.random()*2) : 0,
+      // pv: 38,
+      // amt: 25,
+    },
+    {
+      name: '6',
+      Température_ambiante: !!(dataTable[6].temperatureamb) ? (dataTable[6].temperatureamb)+(Math.random()*2) : 0,
+      // pv: 43,
+      // amt: 21,
+    },
+    {
+      name: '7',
+      Température_ambiante: !!(dataTable[7].temperatureamb) ?  (dataTable[7].temperatureamb)+(Math.random()*2) : 0,
+      // pv: 24,
+      // amt: 24,
+    },
+    {
+      name: '8',
+      Température_ambiante: !!(dataTable[8].temperatureamb) ? (dataTable[8].temperatureamb)+(Math.random()*2) : 0,
+      // pv: 13,
+      // amt: 22,
+    },
+    {
+      name: '9',
+      Température_ambiante: !!(dataTable[9].temperatureamb) ? (dataTable[9].temperatureamb)+(Math.random()*2) : 0,
+      // pv: 98,
+      // amt: 22,
+    },
+  
+  ];
     return (
       <ResponsiveContainer width="99%" height={300}>
         <AreaChart
@@ -67,7 +85,7 @@ const Chart = ()=> {
           <Tooltip />
           <Area type="monotone" dataKey="uv" stackId="1" stroke="#8884d8" fill="#8884d8" />
           <Area type="monotone" dataKey="pv" stackId="1" stroke="#82ca9d" fill="#82ca9d" />
-          <Area type="monotone" dataKey="amt" stackId="1" stroke="#ffc658" fill="#ffc658" />
+          <Area type="monotone" dataKey="Température_ambiante" stackId="1" stroke="#ffc658" fill="#ffc658" />
         </AreaChart>
       </ResponsiveContainer>
     );

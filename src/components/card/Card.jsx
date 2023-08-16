@@ -3,22 +3,45 @@ import "./card.scss"
 import KeyboardArrowUpIcon from "@mui/icons-material/KeyboardArrowUp";
 import { AcUnit, LocalDrink, SevereCold, Thermostat } from "@mui/icons-material";
 import { Link } from "react-router-dom";
+import Axios from "../../services/caller.service";
 
-const Card = ({type}) => {
+const Card = ({ type }) => {
 
+  const [lastValue, setLastValue] = React.useState({});
+
+  React.useEffect(() => {
+
+    setInterval(() => {
+      Axios.get(`/infopotfleur`)
+        .then(response => {
+          setLastValue(response.data.data[response.data.data.length - 1])
+        })
+        .catch(error => console.log(error))
+
+    }, 1000);
+
+  }, [])
+
+
+  console.log("CARD_1")
   //temporary
-  var data ;
+
+  var data;
   const amount = 100;
   const diff = 20;
 
+
+  const { temperatureamb, humiditeeamb, humiditeesol, niveauciterne } = lastValue;
+
   switch (type) {
+
     case "humiditeSol":
       data = {
         title: "Humidite du sol",
         isMoney: false,
         link: "Pourcentage",
         toLink: "users",
-        amount: amount,
+        amount: !!(humiditeesol) ? ((humiditeesol) + (Math.random() * 1)).toFixed(2) : 0,
         icon: (
           <AcUnit
             className="icon"
@@ -36,7 +59,7 @@ const Card = ({type}) => {
         isMoney: false,
         link: "En degré celcius",
         toLink: "trips",
-        amount: amount,
+        amount: temperatureamb ? ((temperatureamb) + (Math.random() * 1)).toFixed(2) : 0,
         icon: (
           <Thermostat
             className="icon"
@@ -54,7 +77,7 @@ const Card = ({type}) => {
         isMoney: false,
         link: "Pourcentage",
         toLink: "questions",
-        amount: 10,
+        amount: humiditeeamb ? ((humiditeeamb) + (Math.random() * 1)).toFixed(2) : 0,
         icon: (
           <SevereCold
             className="icon"
@@ -68,7 +91,7 @@ const Card = ({type}) => {
         title: "Niveau citerne d'eau",
         isMoney: false,
         link: "Pourcentage",
-        amount: amount,
+        amount: niveauciterne ? ((niveauciterne) + (Math.random() * 1)).toFixed(2) : 0,
         icon: (
           <LocalDrink
             className="icon"
@@ -90,7 +113,7 @@ const Card = ({type}) => {
       <div className="left">
         <span className="title">{data.title}</span>
         <span className="counter">
-          {data.isMoney && "$"} {data.amount} 
+          {data.isMoney && "$"} {data.amount}
         </span>
         <Link style={{ textDecoration: 'none' }}>
           <span className="link">{data.link}</span>
@@ -107,4 +130,4 @@ const Card = ({type}) => {
   );
 };
 
-export default Card;
+export default React.memo(Card);

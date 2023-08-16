@@ -4,6 +4,11 @@ import {
     Button, CssBaseline, TextField, Link, Paper, Grid, Typography, Box
 } from "@mui/material";
 
+import imageBg from '../../src/components/assets/pot_de_fleur_one.bmp'
+import Axios from "../services/caller.service";
+import { Navigate, useNavigate } from "react-router-dom";
+import Notification from '../components/dialog/Notification.js'
+
 export default function Login() {
 
     const [typefleur, setTypefleur] = React.useState('');
@@ -12,6 +17,11 @@ export default function Login() {
         password: '',
     })
 
+    const [error, setError] = React.useState(false);
+    const [errorMsg, setErrorMsg] = React.useState('');
+
+    const navigate = useNavigate()
+
     const handleChange = (event) => {
         setCredentials((prev) => ({ ...prev, [event.target.name]: event.target.value }))
     };
@@ -19,20 +29,37 @@ export default function Login() {
     const handleSelect = (event) => {
         setTypefleur(event.target.value)
     };
-    
+
     const handleSubmit = (event) => {
         event.preventDefault();
         console.log(credentials);
         console.log(typefleur);
+
+        Axios.post(`/user/signin`, {
+            username: credentials.username,
+            password: credentials.password
+        })
+            .then(response => {
+                console.log(response)
+                if (response.status === 200 && (response.data.token)) {
+                    localStorage.setItem('token', response.data.token);
+                    localStorage.setItem('username', JSON.stringify(response.data.username));
+                    localStorage.setItem('uid', response.data.id);
+                    navigate('/home', { replace: true })
+                }
+           
+            })
+            .catch(error => {
+                console.log("--CATH--");
+                console.log(error.response.data.message)
+                setErrorMsg(error.response.data.message);
+                setError(true);
+            })
     }
 
     return (
         <Container component="main" maxWidth="lg">
-            <Box
-                sx={{
-                    marginTop: 8,
-                }}
-            >
+            <Box sx={{ marginTop: 8 }}>
                 <Grid container>
                     <CssBaseline />
                     <Grid
@@ -41,17 +68,31 @@ export default function Login() {
                         sm={4}
                         md={7}
                         sx={{
-                            backgroundImage: "url(https://images.unsplash.com/photo-1596219595735-5ca20a1194bb?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=870&q=80)",
+                            backgroundImage: `url(${imageBg})`,
                             backgroundRepeat: "no-repeat",
                             backgroundColor: (t) =>
                                 t.palette.mode === "light"
                                     ? t.palette.grey[50]
                                     : t.palette.grey[900],
-                            backgroundSize: "cover",
+                            backgroundSize: "contain",
                             backgroundPosition: "center",
+                            position: 'relative'
                         }}
                         className="imgLogin"
                     />
+
+                    <Typography component="h1" variant="h5" sx={{
+                        padding: '10px',
+                        position: 'absolute',
+                        fontWeight: '900',
+                        color: 'rgb(154, 244, 181)',
+                        left: 200,
+                        top: 280,
+                        fontSize: '25px'
+
+                    }}>
+                        POT DE FLEUR CONNECTE
+                    </Typography>
                     <Grid
                         item
                         xs={12}
@@ -117,6 +158,7 @@ export default function Login() {
                                     fullWidth
                                     variant="contained"
                                     sx={{ mt: 3, mb: 2 }}
+                                    onClick={handleSubmit}
                                 >
                                     connexion
                                 </Button>
@@ -132,6 +174,8 @@ export default function Login() {
                     </Grid>
                 </Grid>
             </Box>
+
+            <Notification error={error} setError={setError} errorMsg={errorMsg} setErrorMsg={setErrorMsg}/>
         </Container>
     );
 }

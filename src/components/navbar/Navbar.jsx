@@ -21,12 +21,12 @@ function NavBar() {
                                 display: { xs: 'flex', md: 'flex' },
                                 fontFamily: 'monospace',
                                 fontWeight: 700,
-                                letterSpacing: '.3rem',
+                                letterSpacing: '0rem',
                                 color: '#fff',
                                 textDecoration: 'none',
                             }}
                         >
-                            MALKIA DASHBOARD
+                            POT DE FLEUR CONNECTE
                         </Typography>
                     </Box>
                     <Box sx={{display:'flex', alignItems:'center'}} >
