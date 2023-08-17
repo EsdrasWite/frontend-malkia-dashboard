@@ -1,5 +1,15 @@
 @import '../styles/responsive.scss';
 
+.warning{
+  margin-top: 10px;
+  padding: 3px 15px;
+  color: aliceblue;
+  font-size: 13px;
+  background-color: red;
+  border-radius: 3px;
+
+}
+
 .widget {
     display: flex;
     justify-content: space-between;
