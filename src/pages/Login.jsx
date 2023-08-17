@@ -59,6 +59,7 @@ export default function Login() {
 
             })
             .catch(error => {
+                console.log(error)
                 console.log("--CATH--");
                 console.log(error.response.data.message)
                 setErrorMsg(error.response.data.message);
