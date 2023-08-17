@@ -1,20 +1,24 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import "./card.scss"
 import KeyboardArrowUpIcon from "@mui/icons-material/KeyboardArrowUp";
-import { AcUnit, LocalDrink, SevereCold, Thermostat } from "@mui/icons-material";
+import { AcUnit, KeyboardArrowDown, LocalDrink, SevereCold, Thermostat } from "@mui/icons-material";
 import { Link } from "react-router-dom";
 import Axios from "../../services/caller.service";
-
+import { useMemo } from "react";
+ 
 const Card = ({ type }) => {
 
-  const [lastValue, setLastValue] = React.useState({});
+  const [error, setError] = React.useState(false);
+
+  const [lastValue, setLastValue] = React.useState({ temperatureamb: 0, humiditeeamb: 0, humiditeesol: 0, niveauciterne: 4 });
 
   React.useEffect(() => {
 
     setInterval(() => {
       Axios.get(`/infopotfleur`)
         .then(response => {
-          setLastValue(response.data.data[response.data.data.length - 1])
+          if (response.data.data.length > 1) setLastValue(response.data.data[response.data.data.length - 1]);
+          else setLastValue(current => ({ ...current }))
         })
         .catch(error => console.log(error))
 
@@ -27,21 +31,27 @@ const Card = ({ type }) => {
   //temporary
 
   var data;
-  const amount = 100;
   const diff = 20;
 
 
   const { temperatureamb, humiditeeamb, humiditeesol, niveauciterne } = lastValue;
+
+  const niveau = useMemo(() => {
+    if (niveauciterne < 3) setError(true);
+    else setError(false);
+    return niveauciterne;
+  }, [niveauciterne])
 
   switch (type) {
 
     case "humiditeSol":
       data = {
         title: "Humidite du sol",
+        isError: false,
         isMoney: false,
         link: "Pourcentage",
         toLink: "users",
-        amount: !!(humiditeesol) ? ((humiditeesol) + (Math.random() * 1)).toFixed(2) : 0,
+        amount: !!(humiditeesol) ? (humiditeesol).toFixed(2) : 0,
         icon: (
           <AcUnit
             className="icon"
@@ -56,10 +66,11 @@ const Card = ({ type }) => {
     case "temperatureAmbiante":
       data = {
         title: "Température ambiante",
+        isError: false,
         isMoney: false,
         link: "En degré celcius",
         toLink: "trips",
-        amount: temperatureamb ? ((temperatureamb) + (Math.random() * 1)).toFixed(2) : 0,
+        amount: temperatureamb ? ((temperatureamb)).toFixed(2) : 0,
         icon: (
           <Thermostat
             className="icon"
@@ -74,10 +85,11 @@ const Card = ({ type }) => {
     case "humiditeAmbiante":
       data = {
         title: "Humidite ambiante",
+        isError: false,
         isMoney: false,
         link: "Pourcentage",
         toLink: "questions",
-        amount: humiditeeamb ? ((humiditeeamb) + (Math.random() * 1)).toFixed(2) : 0,
+        amount: humiditeeamb ? ((humiditeeamb)).toFixed(2) : 0,
         icon: (
           <SevereCold
             className="icon"
@@ -89,9 +101,10 @@ const Card = ({ type }) => {
     case "niveauEau":
       data = {
         title: "Niveau citerne d'eau",
+        isError: error,
         isMoney: false,
         link: "Pourcentage",
-        amount: niveauciterne ? ((niveauciterne) + (Math.random() * 1)).toFixed(2) : 0,
+        amount: niveau ? ((niveau)).toFixed(2) : 0,
         icon: (
           <LocalDrink
             className="icon"
@@ -109,24 +122,30 @@ const Card = ({ type }) => {
 
 
   return (
-    <div className="widget">
-      <div className="left">
-        <span className="title">{data.title}</span>
-        <span className="counter">
-          {data.isMoney && "$"} {data.amount}
-        </span>
-        <Link style={{ textDecoration: 'none' }}>
-          <span className="link">{data.link}</span>
-        </Link>
-      </div>
-      <div className="right">
-        <div className="percentage positive">
-          <KeyboardArrowUpIcon />
-          {diff} %
+    <>
+      <div className="widget">
+        <div className="left" >
+          <span className="title">{data.title}</span>
+          <span className="counter">
+            {data.isMoney && "$"} {data.amount}
+          </span>
+          <Link style={{ textDecoration: 'none' }}>
+            <span className="link">{data.link}</span>
+          </Link>
         </div>
-        {data.icon}
+        <div className="right">
+          <div className={data.isError ? "percentage negative" : "percentage positive"}>
+            {data.isError ? <KeyboardArrowDown /> : <KeyboardArrowUpIcon />}
+            {diff} %
+          </div>
+          {data.icon}
+        </div>
       </div>
-    </div>
+
+      {data.isError && <span className="warning">Niveau citerne d'eau inférieur au seuil</span>}
+      {/* <Notification error={error} setError={setError} errorMsg={errorMsg} setErrorMsg={setErrorMsg} /> */}
+
+    </>
   );
 };
 
